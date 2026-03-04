@@ -8,7 +8,7 @@
 ![SemanticSearch Preview](4.png)
 
 ---
-FRONTEND_URL = https://your-frontend.onrender.com
+FRONTEND_URL = https://semanticsearch-1-aar4.onrender.com
 
 ## What it does
 
