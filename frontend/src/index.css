@@ -1,0 +1,91 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #080C08;
+  --bg2:     #0D120D;
+  --bg3:     #111811;
+  --bg4:     #162016;
+  --bg5:     #1C291C;
+
+  --border:  #1A2E1A;
+  --border2: #234023;
+
+  --green:       #22C55E;
+  --green2:      #16A34A;
+  --green-soft:  rgba(34,197,94,0.08);
+  --green-glow:  rgba(34,197,94,0.15);
+  --green-dim:   rgba(34,197,94,0.4);
+
+  --emerald:     #10B981;
+  --lime:        #84CC16;
+  --yellow:      #EAB308;
+  --red:         #EF4444;
+  --sky:         #38BDF8;
+
+  --text:    #E2F0E2;
+  --text2:   #7AAA7A;
+  --text3:   #4A6A4A;
+  --text4:   #2A3E2A;
+
+  --font: 'Inter', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
+  --radius: 10px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.5);
+}
+
+html, body, #root { height: 100%; background: var(--bg); color: var(--text); font-family: var(--font); font-size: 14px; -webkit-font-smoothing: antialiased; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
+
+button { cursor: pointer; font-family: var(--font); border: none; outline: none; background: none; color: inherit; }
+input, textarea { font-family: var(--font); outline: none; color: var(--text); }
+
+.card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); }
+
+.input {
+  width: 100%; background: var(--bg3); border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 9px 13px; font-size: 13px; color: var(--text);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.input:focus { border-color: var(--green); box-shadow: 0 0 0 3px var(--green-soft); }
+.input::placeholder { color: var(--text3); }
+
+.btn-primary {
+  background: var(--green); color: #000; padding: 9px 20px; border-radius: 8px;
+  font-size: 13px; font-weight: 700; transition: all 0.15s;
+  box-shadow: 0 2px 16px var(--green-glow);
+}
+.btn-primary:hover:not(:disabled) { background: var(--green2); transform: translateY(-1px); box-shadow: 0 4px 24px var(--green-glow); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-ghost { background: transparent; border: 1px solid var(--border2); color: var(--text2); padding: 8px 14px; border-radius: 8px; font-size: 12px; transition: all 0.15s; }
+.btn-ghost:hover { border-color: var(--green); color: var(--green); }
+
+/* Score bar */
+.score-bar { height: 3px; border-radius: 3px; background: var(--border); overflow: hidden; }
+.score-fill { height: 100%; border-radius: 3px; transition: width 0.6s cubic-bezier(.25,.46,.45,.94); }
+
+@keyframes fadeUp   { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn   { from{opacity:0} to{opacity:1} }
+@keyframes spin     { to{transform:rotate(360deg)} }
+@keyframes pulse    { 0%,100%{opacity:1} 50%{opacity:0.3} }
+@keyframes shimmer  { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
+@keyframes blink    { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes scanline { 0%{top:0%} 100%{top:100%} }
+
+.skeleton { background: linear-gradient(90deg, var(--bg3) 25%, var(--bg4) 50%, var(--bg3) 75%); background-size: 200% 100%; animation: shimmer 1.4s ease infinite; border-radius: 6px; }
+
+/* Terminal cursor */
+.cursor::after { content:'█'; animation: blink 1s step-end infinite; margin-left:2px; opacity:0.7; }
+
+/* Scan line effect */
+.scanline {
+  position: relative; overflow: hidden;
+}
+.scanline::after {
+  content:''; position:absolute; left:0; top:0; width:100%; height:2px;
+  background: linear-gradient(transparent, rgba(34,197,94,0.06), transparent);
+  animation: scanline 4s linear infinite; pointer-events:none;
+}
